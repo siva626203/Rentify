@@ -6,9 +6,9 @@ function Header() {
 
             <nav class="border-gray-200">
                 <div class="container mx-auto flex flex-wrap items-center justify-between">
-                    <a href="#" class="flex">
+                    <Link to={'/'} class="flex">
                         <span class="self-center text-lg font-semibold whitespace-nowrap">Rentify</span>
-                    </a>
+                    </Link>
                     <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden ml-3 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu-2" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
