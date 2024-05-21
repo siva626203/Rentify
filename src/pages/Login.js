@@ -1,12 +1,42 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import { useDispatch } from 'react-redux';
+import {login} from '../store/Slice/UsersSlice'
+import {useSelector} from "react-redux"
+import { useNavigate } from 'react-router';
 function Login() {
+  const [user,setUser]=useState({email:String,password:String})
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+   const selector = useSelector((state) => state.user);
+  const Submit = async (e) => {
+    e.preventDefault();
+    await axios
+      .get("/user/login", {params:user})
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.message === "Invalid email") return toast.error(res.data.message)
+          localStorage.setItem("token", res.data.token);
+        dispatch(login(res.data.data))
+        toast.success(res.data.message);
+        setTimeout(navigate("/properties"), 3000);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.response.data.message);
+      });
+  };
+  useEffect(()=>{
+    console.log(selector)
+  },[])
   return (
     <div>
+      <ToastContainer/>
       <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
         Login
       </h1>
-      <form class="max-w-sm mx-auto mt-10">
+      <form class="max-w-sm mx-auto mt-10" onSubmit={Submit}>
         <div class="mb-5">
           <label
             for="email"
@@ -17,6 +47,9 @@ function Login() {
           <input
             type="email"
             id="email"
+            onChange={(e) => {
+              setUser((prev) => ({ ...prev, email: e.target.value }));
+            }}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="name@company.com"
             required
@@ -32,6 +65,9 @@ function Login() {
           <input
             type="password"
             id="password"
+            onChange={(e) => {
+              setUser((prev) => ({ ...prev, password: e.target.value }));
+            }}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
           />
