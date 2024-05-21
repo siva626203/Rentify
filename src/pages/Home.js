@@ -31,13 +31,13 @@ console.log(pageNumbers)
   },[properties])
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = properties.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = properties?.slice(indexOfFirstPost, indexOfLastPost);
   const handlePagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   const Pagination = () => {
     const paginationNumbers = [];
-    for (let i = 1; i <= Math.ceil(properties.length / postsPerPage); i++) {
+    for (let i = 1; i <= Math?.ceil(properties.length / postsPerPage); i++) {
       paginationNumbers.push(i);
       console.log(i)
     }
