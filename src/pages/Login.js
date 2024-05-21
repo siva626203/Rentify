@@ -20,7 +20,12 @@ function Login() {
           localStorage.setItem("token", res.data.token);
         dispatch(login(res.data.data))
         toast.success(res.data.message);
-        setTimeout(navigate("/properties"), 3000);
+        if(res.data.data.type==="seller"){
+          setTimeout(navigate("/properties"), 3000);
+        }else{
+          setTimeout(navigate("/"), 3000);
+        }
+        
       })
       .catch((error) => {
         console.log(error);
