@@ -1,6 +1,6 @@
 import './App.css';
 import "react-toastify/dist/ReactToastify.css";
-import { Route,Routes,Router } from 'react-router';
+import { Route,Routes } from 'react-router';
 import Home from './pages/Home'
 import Properties from './pages/Properties'
 import Profile from './pages/Profile'
@@ -10,7 +10,6 @@ import Footer from './components/Footer'
 import Register from './pages/Register';
 import axios from "axios";
 import { useSelector } from 'react-redux';
-import {useEffect}from 'react'
 import AddProduct from './components/AddProduct';
 
 function App() {
