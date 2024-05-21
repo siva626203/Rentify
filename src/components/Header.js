@@ -114,7 +114,7 @@ function Header(state) {
                     </li>
                   </>
                 ) : null}
-                {state?.user?.type ? (
+                {state?.user?.type==="buyer" ? (
                   <li>
                     <button
                       onClick={(e) => {
