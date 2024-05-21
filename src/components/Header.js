@@ -62,9 +62,7 @@ function Header(state) {
                 </li>
 
                 {state?.user?.type == "seller" ||
-                state?.user?.type == "buyer" ? (
-                  null
-                ) : (
+                state?.user?.type == "buyer" ? null : (
                   <>
                     <li>
                       <Link
@@ -105,13 +103,29 @@ function Header(state) {
                     </li>
                     <li>
                       <button
-                        onClick={e=>{dispatch(logout());navigate('/')}}
+                        onClick={(e) => {
+                          dispatch(logout());
+                          navigate("/");
+                        }}
                         class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
                       >
                         logout
                       </button>
                     </li>
                   </>
+                ) : null}
+                {state?.user?.type ? (
+                  <li>
+                    <button
+                      onClick={(e) => {
+                        dispatch(logout());
+                        navigate("/");
+                      }}
+                      class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                    >
+                      logout
+                    </button>
+                  </li>
                 ) : null}
               </ul>
             </div>
